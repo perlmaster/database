@@ -1,0 +1,23 @@
+	$sql =<<SQL1;
+INSERT INTO $tracking_table
+( ad_id , send_date , meshlist , files , switch_type ,commands , server_addr , remote_addr , progress , details )
+VALUES
+( '$ad_id' , getdate() , '$meshlist' , '$selected_files' , '$switch_type' , '$switch_commands' , '$ENV{"SERVER_ADDR"}' ,
+'$ENV{'REMOTE_ADDR'}' , 'started' , '$details'
+)
+SQL1
+
+	$tracking_record_id = "";
+	$sth = $dbh->prepare($sql);
+	unless ( defined $sth ) {
+		display_error("<BR>prepare failed for ${sql}<BR>$DBI::errstr<BR>");
+	} # UNLESS
+	else {
+		unless ( $sth->execute() ) {
+			display_error("<BR>execute failed for ${sql}<BR>$DBI::errstr<BR>");
+		} # UNLESS
+		else {
+			$tracking_record_id = $dbh->last_insert_id( undef, undef, undef, undef );
+		} # ELSE
+		$sth->finish();
+	} # ELSE

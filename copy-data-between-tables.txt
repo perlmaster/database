@@ -1,0 +1,21 @@
+
+Here is how to copy data from one table to another table with a similar structue
+
+INSERT INTO TestTable (FirstName, LastName)
+SELECT FirstName, LastName
+FROM Person.Person
+WHERE EmailPromotion = 2;
+
+-- copy all columns from one table to another existing table
+INSERT INTO new_table
+SELECT * FROM old_table;
+
+-- Tip: The SELECT INTO statement can also be used to create a new,
+-- empty table using the schema of another.
+-- Just add a WHERE clause that causes the query to return no data:
+
+SELECT *
+INTO newtable
+FROM old_table
+WHERE 1=0;
+

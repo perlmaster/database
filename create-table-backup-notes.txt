@@ -1,0 +1,17 @@
+
+The easiest way to create a copy of a table is to use a Transact-SQL command.
+
+Use SELECT INTO to extract all the rows from an existing table into the new table.
+The new table must not exist already.
+The following example will copy the Customers table under the Sales schema to
+a new table called CurrCustomers under the BizDev schema:
+
+SELECT * INTO BizDev.CurrCustomers FROM Sales.Customers
+
+You can also create the new table from a specific subset of columns in the original table.
+In this case, you specify the names of the columns to copy after the SELECT keyword.
+Any columns not specified are excluded from the new table.
+The following example copies specific columns to a new table:
+
+SELECT CustName, Address, Telephone, Email INTO BizDev.CurrCustomers
+FROM Sales.Customers
