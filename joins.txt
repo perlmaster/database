@@ -1,0 +1,38 @@
+
+INNER JOIN: Retrieves customers with orders only. For example, you want
+to determine the amount ordered by each customer and you only want to see
+those who have ordered something
+
+SELECT Customers.*, Orders.*
+FROM Customers INNER JOIN Orders ON Customers.CustomerID =
+Orders.CustomerID
+
+------------------------------------------------------------------------
+
+LEFT OUTER JOIN: Retrieves all customers with or without orders. Order
+data for customers without orders appears as NULL values. For example,
+you want to determine the amount ordered by each customer and you need to
+see who has not ordered anything as well. You can also see the LEFT OUTER
+JOIN as a mirror image of the RIGHT OUTER JOIN if you switch the side of
+each table.
+
+SELECT Customers.*, Orders.*
+FROM Customers LEFT OUTER JOIN Orders ON Customers.CustomerID =
+Orders.CustomerID
+
+------------------------------------------------------------------------
+
+RIGHT OUTER JOIN: Retrieves all orders with or without matching customer
+records. Customer data for orders without customers appears as NULL
+values. For example, you want to determine if there are any orders in the
+data with undefined CustomerID values (say, after a conversion or
+something like it). You can also see the RIGHT OUTER JOIN as a mirror
+image of the LEFT OUTER JOIN if you switch the side of each table.
+
+SELECT Customers.*, Orders.*
+FROM Customers RIGHT OUTER JOIN Orders ON Customers.CustomerID =
+Orders.CustomerID
+
+More information:
+More information on SQL Server is available in the SQL-SERVER-L
+discussion group archives.
